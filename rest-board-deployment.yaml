@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-board
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rest-board
+  template:
+    metadata:
+      name: rest-board
+      labels:
+        app: rest-board
+    spec:
+      containers:
+        - name: rest-board
+          image: googy/rest-board:1.1.0
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: rest-board-config
+          livenessProbe:
+            httpGet:
+              path: /api/postings
+              port: 8000
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 500m
