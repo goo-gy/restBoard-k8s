@@ -32,5 +32,8 @@ spec:
 ## 배포
 
 ``` shell
-
+kubectl create -f rest-board-configmap.yaml
+kubectl create -f rest-board-externalname.yaml
+kubectl create -f rest-board-nodeport.yaml
+kubectl create -f rest-board-deployment.yaml
 ```
